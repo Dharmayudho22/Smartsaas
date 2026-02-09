@@ -1,4 +1,4 @@
-import prima from '../../config/prisma.js';
+import prisma from '../../config/database.js';
 
 export const createProjectService = async ({ user, data }) => {
     return await prisma.project.create({
@@ -12,15 +12,15 @@ export const createProjectService = async ({ user, data }) => {
     });
 };
 
-export const getAllProjectsService = async ({ user }) => {
-    return await prisma.project.findMany({
-        where: {
-            companyId: user.companyId
-        },
-        orderBy: {
-            createdAt: "desc"
-        }
-    });
+export const getAllProjectsService = async (user) => {
+  return await prisma.project.findMany({
+    where: {
+      companyId: user.companyId
+    },
+    orderBy: {
+      createdAt: "desc"
+    }
+  });
 };
 
 export const getProjectByIdService = async ({ user, id }) => {

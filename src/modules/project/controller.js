@@ -1,11 +1,14 @@
 import {
-    createProjectService,
-    getAllProjectsService,
-    getProjectByIdService,
-    deleteProjectService
+  createProjectService,
+  getAllProjectsService,
+  getProjectByIdService,
+  deleteProjectService
 } from "./service.js";
 
-import { createProjectService, projectIdSchema } from "./validation.js";
+import {
+  createProjectSchema,
+  projectIdSchema
+} from "./validation.js";
 
 export const createProject = async (req, res) => {
     try {
@@ -50,7 +53,7 @@ export const getProjectById = async (req, res) => {
 
         const project = await getProjectByIdService({
             user: req.user,
-            id: validated.id
+            id: id
         });
 
         if (!project) {
